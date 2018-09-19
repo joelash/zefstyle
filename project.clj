@@ -4,12 +4,12 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies [[org.clojure/clojure "1.8.0" :scope "provided"]
-                 [org.clojure/clojurescript "1.9.562" :scope "provided"]
-                 [reagent "0.6.2" :exclusions [cljsjs/react cljsjs/react-dom]]]
+  :dependencies [[org.clojure/clojure "1.9.0" :scope "provided"]
+                 [org.clojure/clojurescript "1.10.339" :scope "provided"]
+                 [reagent "0.8.1" :exclusions [cljsjs/react cljsjs/react-dom]]]
 
-  :plugins [[lein-cljsbuild "1.1.6"]
-            [lein-figwheel "0.5.10"]]
+  :plugins [[lein-cljsbuild "1.1.7"]
+            [lein-figwheel "0.5.16"]]
 
   :min-lein-version "2.5.0"
 
@@ -34,7 +34,7 @@
                                        :asset-path   "js/out"
                                        :source-map true
                                        :foreign-libs [{:file "public/js/bundle.js"
-                                                       :provides ["cljsjs.react" "cljsjs.react.dom" "webpack.bundle"]}]
+                                                       :provides ["cljsjs.react" "react" "cljsjs.react.dom" "webpack.bundle"]}]
                                        :optimizations :none
                                        :pretty-print  true}}
                        :release
@@ -45,11 +45,11 @@
                                        :asset-path   "js/out"
                                        :optimizations :advanced
                                        :foreign-libs [{:file "public/js/bundle.js"
-                                                       :provides ["cljsjs.react" "cljsjs.react.dom" "webpack.bundle"]}]
+                                                       :provides ["cljsjs.react" "react" "cljsjs.react.dom" "webpack.bundle"]}]
                                        :pretty-print false}}}}
 
   :aliases {"release" ["do" "clean" ["cljsbuild" "once" "release"]]}
 
-  :profiles {:dev {:dependencies [[lein-figwheel "0.5.4-SNAPSHOT"]
+  :profiles {:dev {:dependencies [[lein-figwheel "0.5.16"]
                                   [org.clojure/tools.nrepl "0.2.12"]
                                   [com.cemerick/piggieback "0.2.2-SNAPSHOT"]]}})
