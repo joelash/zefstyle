@@ -4,9 +4,9 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies [[org.clojure/clojure "1.9.0" :scope "provided"]
-                 [org.clojure/clojurescript "1.10.339" :scope "provided"]
-                 [reagent "0.8.1" :exclusions [cljsjs/react cljsjs/react-dom]]]
+  :dependencies [[org.clojure/clojure "1.9.0"]
+                 [org.clojure/clojurescript "1.10.339"]
+                 [reagent "0.8.1"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-figwheel "0.5.16"]]
@@ -34,8 +34,11 @@
                                        :output-dir "public/js/out"
                                        :asset-path   "js/out"
                                        :source-map true
-                                       :foreign-libs [{:file "public/js/bundle.js"
-                                                       :provides ["cljsjs.react" "react" "cljsjs.react.dom" "webpack.bundle"]}]
+                                       :npm-deps {:react "16.3.2"
+                                                  :react-dom "16.3.2"
+                                                  :resolve "1.3.3"
+                                                  :react-player "0.18.0"}
+                                       :install-deps true
                                        :optimizations :none
                                        :pretty-print  true}}
                        :release
@@ -45,8 +48,6 @@
                                        :output-dir "public/js/release"
                                        :asset-path   "js/out"
                                        :optimizations :advanced
-                                       :foreign-libs [{:file "public/js/bundle.js"
-                                                       :provides ["cljsjs.react" "react" "cljsjs.react.dom" "webpack.bundle"]}]
                                        :pretty-print false}}}}
 
   :aliases {"release" ["do" "clean" ["cljsbuild" "once" "release"]]}

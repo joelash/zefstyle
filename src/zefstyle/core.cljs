@@ -1,21 +1,21 @@
 (ns zefstyle.core
   (:require
     [reagent.core :as reagent :refer [atom]]
-    [webpack.bundle]))
+    [react-player]))
 
 ;; -------------------------
 ;; Views
 
-(def react-player
-  (-> js/window
-      (aget "deps" "react-player")
-      reagent/adapt-react-class))
+(def react-player-comp
+  (do
+    (js/console.warn react-player/ReactPlayer)
+    (reagent/adapt-react-class react-player/ReactPlayer)))
 
 
 (defn home-page []
   [:div
      [:h2 "Zef Style"]
-     [react-player {:url "https://www.youtube.com/watch?v=BU2d5av-k6Q&feature=player_embedded_uturn"}]])
+     [react-player-comp {:url "https://www.youtube.com/watch?v=BU2d5av-k6Q&feature=player_embedded_uturn"}]])
 
 ;; -------------------------
 ;; Initialize app
