@@ -34,20 +34,33 @@
                                        :output-dir "public/js/out"
                                        :asset-path   "js/out"
                                        :source-map true
+                                       :infer-externs true
+                                       :npm-deps false
                                        :foreign-libs [{:file "public/js/bundle.js"
-                                                       :provides ["cljsjs.react" "react" "cljsjs.react.dom" "webpack.bundle"]}]
+                                                       :provides ["react" "react-dom" "react-player"]
+                                                       :global-exports {react React
+                                                                        react-dom ReactDOM
+                                                                        react-player ReactPlayer}}]
                                        :optimizations :none
                                        :pretty-print  true}}
                        :release
                        {:source-paths ["src" "env/prod/cljs"]
                         :compiler
-                                      {:output-to "public/js/app.js"
-                                       :output-dir "public/js/release"
-                                       :asset-path   "js/out"
-                                       :optimizations :advanced
-                                       :foreign-libs [{:file "public/js/bundle.js"
-                                                       :provides ["cljsjs.react" "react" "cljsjs.react.dom" "webpack.bundle"]}]
-                                       :pretty-print false}}}}
+                        {:output-to "public/js/app.js"
+                         :output-dir "public/js/release"
+                         :asset-path   "js/out"
+                         :npm-deps false
+                         :externs ["cljsjs/react/common/react.ext.js"
+                                   "cljsjs/react-dom/common/react-dom-server.ext.js"
+                                   "cljsjs/react-dom/common/react-dom.ext.js"]
+                         :infer-externs true
+                         :foreign-libs [{:file "public/js/bundle.js"
+                                         :provides ["react" "react-dom" "react-player"]
+                                         :global-exports {react React
+                                                          react-dom ReactDOM
+                                                          react-player ReactPlayer}}]
+                         :optimizations :advanced
+                         :pretty-print false}}}}
 
   :aliases {"release" ["do" "clean" ["cljsbuild" "once" "release"]]}
 

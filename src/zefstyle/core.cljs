@@ -1,15 +1,12 @@
 (ns zefstyle.core
   (:require
-    [reagent.core :as reagent :refer [atom]]
-    [webpack.bundle]))
+    [reagent.core :as reagent :refer [atom]]))
 
 ;; -------------------------
 ;; Views
 
 (def react-player
-  (-> js/window
-      (aget "deps" "react-player")
-      reagent/adapt-react-class))
+  (reagent/adapt-react-class js/ReactPlayer))
 
 
 (defn home-page []
